@@ -54,6 +54,10 @@ Crie variáveis ambientes com as credenciais para conexão do banco de dados. Po
  POSTGRES_ADDRESS=localhost
  ``` 
 
- Atencção, o banco de dados (neste caso pokedex) já deve ter sido criado no mysql.
+ Atenção, o banco de dados (neste caso, pokedex) já deve ter sido criado no mysql.
 
 Após ativar o ambiente virtual, rode o programa main. O programa irá iniciar e ao final deve criar uma tabela "pokemon" no banco de dados. 
+
+[Python]: https://www.python.org/
+[MySQL]:https://www.mysql.com/
+[Virtualenv]: https://gist.github.com/frfahim/73c0fad6350332cef7a653bcd762f08d
