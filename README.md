@@ -66,7 +66,7 @@ Após ativar o ambiente virtual, rode o programa main. O programa irá iniciar e
 * [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 * [Sqlalchemy](https://www.sqlalchemy.org/)
 * [Pandas](https://pandas.pydata.org/)
-* [MySQL.connector] (https://www.mysql.com/products/connector/)
+* [MySQL.connector](https://www.mysql.com/products/connector/)
 
 ## Contato
 
