@@ -61,3 +61,15 @@ Após ativar o ambiente virtual, rode o programa main. O programa irá iniciar e
 [Python]: https://www.python.org/
 [MySQL]:https://www.mysql.com/
 [Virtualenv]: https://gist.github.com/frfahim/73c0fad6350332cef7a653bcd762f08d
+
+## Acknowledgements
+* [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+* [Sqlalchemy](https://www.sqlalchemy.org/)
+* [Pandas](https://pandas.pydata.org/)
+* [MySQL.connector] (https://www.mysql.com/products/connector/)
+
+## Contato
+
+Deborah Yohana Bertoldo da Silva - [Linkedin](https://www.linkedin.com/in/deborah-yohana-bertoldo/) - deh.yohana@gmail.com
+
+Project Link: [Github](https://github.com/dehyohana)
