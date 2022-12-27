@@ -48,10 +48,10 @@ source .venv/bin/activate
 Crie variáveis ambientes com as credenciais para conexão do banco de dados. Por exemplo, posso criar um arquivo .env com as seguintes variáveis ambientes:
 
 ```sh
- POSTGRES_USER=root
- POSTGRES_PASSWORD=root
- POSTGRES_DATABASE=pokedex
- POSTGRES_ADDRESS=localhost
+ MYSQL_USER=root
+ MYSQL_PASSWORD=root
+ MYSQL_DATABASE=pokedex
+ MYSQL_ADDRESS=localhost
  ``` 
 
  Atenção, o banco de dados (neste caso, pokedex) já deve ter sido criado no mysql.
@@ -61,15 +61,3 @@ Após ativar o ambiente virtual, rode o programa main. O programa irá iniciar e
 [Python]: https://www.python.org/
 [MySQL]:https://www.mysql.com/
 [Virtualenv]: https://gist.github.com/frfahim/73c0fad6350332cef7a653bcd762f08d
-
-## Acknowledgements
-* [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-* [Sqlalchemy](https://www.sqlalchemy.org/)
-* [Pandas](https://pandas.pydata.org/)
-* [MySQL.connector] (https://www.mysql.com/products/connector/)
-
-## Contato
-
-Deborah Yohana Bertoldo da Silva - [Linkedin](https://www.linkedin.com/in/deborah-yohana-bertoldo/) - deh.yohana@gmail.com
-
-Project Link: [Github](https://github.com/dehyohana)
