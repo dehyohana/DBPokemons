@@ -48,10 +48,10 @@ source .venv/bin/activate
 Crie variáveis ambientes com as credenciais para conexão do banco de dados. Por exemplo, posso criar um arquivo .env com as seguintes variáveis ambientes:
 
 ```sh
- POSTGRES_USER=root
- POSTGRES_PASSWORD=root
- POSTGRES_DATABASE=pokedex
- POSTGRES_ADDRESS=localhost
+ MYSQL_USER=root
+ MYSQL_PASSWORD=root
+ MYSQL_DATABASE=pokedex
+ MYSQL_ADDRESS=localhost
  ``` 
 
  Atenção, o banco de dados (neste caso, pokedex) já deve ter sido criado no mysql.
