@@ -43,9 +43,9 @@ class Scrapper:
         poke_img_aux = []
         tag_img = soup.find_all('span',class_='infocard-lg-img')
         for i in tag_img:
-            poke_img_aux.append(i.find_all('span', class_='img-fixed img-sprite'))
-        for i in range(len(poke_img_aux)):
-            img_list.append(poke_img_aux[i][0]['data-src'])
+            poke_img_aux.append(i.find_all('source'))
+        for i in range(150):
+            img_list.append(poke_img_aux[i][0]['srcset'])
         return img_list
 
     def __get_type1__(self, soup: bs) -> list:
