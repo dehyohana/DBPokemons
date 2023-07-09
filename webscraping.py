@@ -93,7 +93,7 @@ class Scrapper:
         url = []
         list_pokemon = self.__get_name__(soup)
 
-        for i in list_pokemon[:150]:
+        for i in list_pokemon[:30]:
             urlaux = 'https://www.pokemon.com/br/pokedex/' + str(i)
             url.append(urlaux)
         return url
@@ -216,7 +216,7 @@ class Scrapper:
         list_ability = self.__get_card_ability__(soup)
         list_image = self.__get_img__(soup)
 
-        for i in range(len(list_id[:150])):
+        for i in range(len(list_id[:30])):
             df2 = pd.DataFrame(
                 {
                     'id' : [list_id[i]],
