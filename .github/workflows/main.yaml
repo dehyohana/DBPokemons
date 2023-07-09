@@ -22,3 +22,9 @@ jobs:
     - name: Run app
       run: |
         python dftotext.py
+    - name: Commit and push
+      run: |
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "Latest data: ${timestamp}" || exit 0
+        git push
