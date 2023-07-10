@@ -15,12 +15,29 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10.6"
+    - name: cache virtualenv
+      uses: actions/cache@v3
+      id: cache-venv
+      with:
+        path: ./.venv/
+        key: ${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}-venv-${{ hashFiles('requirements.txt ')}}
+        restore-keys: |
+          ${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}-venv-
     - name: Install dependencies
+      shell: bash
       run: |
+        python -m venv ./.venv
+        source ./.venv/bin/activate
         python -m pip install --upgrade pip
-        pip install -r ./requirements/requirements.txt
+        python -m pip install -r ./requirements/requirements.txt
+      if: steps.cache-venv.outputs.cache-hit != 'true'
+    - name: Install repo project
+      shell: bash
+      run: |
+        source ./.venv/bin/activate
     - name: Run app
       run: |
+        python -m pip install -r ./requirements/requirements.txt
         python dftotext.py
     - name: Commit and push
       run: |
