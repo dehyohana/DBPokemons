@@ -149,3 +149,4 @@ id,pokemon,type_1,type_2,height_m,weight_kg,description,ability,img_url
 148,Dragonair,dragon,,4.0,16.5,"They say that if it emits an aura from its whole body, the weather will begin to change instantly.",Shed Skin,https://img.pokemondb.net/sprites/home/normal/2x/avif/dragonair.avif
 149,Dragonite,dragon,flying,2.2,210.0,It is said that somewhere in the ocean lies an island where these gather. Only they live there.,Inner Focus,https://img.pokemondb.net/sprites/home/normal/2x/avif/dragonite.avif
 150,Mewtwo,psychic,,2.0,122.0,"Its DNA is almost the same as Mew’s. However, its size and disposition are vastly different.",Pressure,https://img.pokemondb.net/sprites/home/normal/2x/avif/mewtwo.avif
+151,Mew,psychic,,0.4,4.0,"When viewed through a microscope, this Pokémon’s short, fine, delicate hair can be seen.",Synchronize,https://img.pokemondb.net/sprites/home/normal/2x/avif/mew.avif
