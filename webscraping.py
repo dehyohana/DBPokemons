@@ -6,15 +6,16 @@ class Scrapper:
     def __init__(self) -> None:
         self.url = "https://pokemondb.net/pokedex/national"
 
-    def __get_id__(self, soup: bs) -> list:
+    def __get_id__(self, soup: bs, poke_range: range) -> list:
         """Return id list
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             list: id_list[int]
         """
         id_list = soup.find_all('span', class_='infocard-lg-data text-muted')
-        for i in range(len(id_list)):
+        for i in poke_range:
             id_list[i] = id_list[i].find('small').text.rstrip("\n")
             id_list[i] = int ( ''.join(filter(str.isdigit, id_list[i]) ))
         return id_list
@@ -23,6 +24,7 @@ class Scrapper:
         """Return pokemon name list
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             list: poke_list[str]
         """
@@ -32,10 +34,11 @@ class Scrapper:
             poke_list.append(i.text)
         return poke_list
     
-    def __get_img__(self, soup: bs) -> list:
+    def __get_img__(self, soup: bs, poke_range: range) -> list:
         """Return pokemon images list
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             list: img_list[str]
         """
@@ -44,7 +47,7 @@ class Scrapper:
         tag_img = soup.find_all('span',class_='infocard-lg-img')
         for i in tag_img:
             poke_img_aux.append(i.find_all('source'))
-        for i in range(151):
+        for i in poke_range:
             img_list.append(poke_img_aux[i][0]['srcset'])
         return img_list
 
@@ -52,6 +55,7 @@ class Scrapper:
         """Return pokemon type 1 list
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             list: type1_list[str]
         """
@@ -83,30 +87,32 @@ class Scrapper:
                 type2_list.append('')
         return type2_list
 
-    def __get_card_url__(self, soup: bs) -> list:
+    def __get_card_url__(self, soup: bs, poke_range: range) -> list:
         """Return urls list
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             list: url[str]
         """
         url = []
         list_pokemon = self.__get_name__(soup)
 
-        for i in list_pokemon[:151]:
+        for i in poke_range:
             urlaux = 'https://www.pokemon.com/br/pokedex/' + str(i)
             url.append(urlaux)
         return url
     
-    def __get_card_info__(self, soup:bs) -> list:
+    def __get_card_info__(self, soup: bs, poke_range: range) -> list:
         """Return pokemon description list
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             list: description[str]
         """
         description = []
-        url = self.__get_card_url__(soup)
+        url = self.__get_card_url__(soup, poke_range)
 
         for i in url: 
             r = requests.get(i)
@@ -118,15 +124,16 @@ class Scrapper:
                 description.append('')
         return description
 
-    def __get_card_height__(self, soup:bs) -> list:
+    def __get_card_height__(self, soup: bs, poke_range: range) -> list:
         """Return pokemon height list
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             list: height[float]
         """
         height = []
-        url = self.__get_card_url__(soup)
+        url = self.__get_card_url__(soup, poke_range)
 
         for i in url: 
             r = requests.get(i)
@@ -142,15 +149,16 @@ class Scrapper:
                 height[i] = round(float(height[i]),1)
         return height
 
-    def __get_card_weight__(self, soup:bs) -> list:
+    def __get_card_weight__(self, soup: bs, poke_range: range) -> list:
         """Return pokemon weight list
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             list: weight[float]
         """
         weight = []
-        url = self.__get_card_url__(soup)
+        url = self.__get_card_url__(soup, poke_range)
 
         for i in url: 
             r = requests.get(i)
@@ -165,15 +173,16 @@ class Scrapper:
                     weight[i] = weight[i].strip(" kg")
         return weight
 
-    def __get_card_ability__(self, soup:bs) -> list:
+    def __get_card_ability__(self, soup: bs, poke_range: range) -> list:
         """Return pokemon abilities list
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             list: ability[str]
         """
         ability = []
-        url = self.__get_card_url__(soup)
+        url = self.__get_card_url__(soup, poke_range)
 
         for i in url: 
             r = requests.get(i)
@@ -185,10 +194,11 @@ class Scrapper:
                 ability.append('')
         return ability
 
-    def _build_json(self, soup: bs) -> pd.DataFrame:
+    def _build_json(self, soup: bs, poke_range: range) -> pd.DataFrame:
         """built dataframe of pokemon's stats ['id','pokemon','type_1','type_2','height_m','weight_kg','description','ability',''img_url]
         Args:
             soup (bs): BeautifulSoup
+            poke_range: range of id by generation
         Returns:
             pd.DataFrame: df_pokemon_stats
         """
@@ -206,17 +216,17 @@ class Scrapper:
             ]
         )
 
-        list_id = self.__get_id__(soup)
+        list_id = self.__get_id__(soup, poke_range)
         list_pokemon = self.__get_name__(soup)
         list_type1 = self.__get_type1__(soup)
         list_type2 = self.__get_type2__(soup)
-        list_height = self.__get_card_height__(soup)
-        list_weight = self.__get_card_weight__(soup)
-        list_description = self.__get_card_info__(soup)
-        list_ability = self.__get_card_ability__(soup)
-        list_image = self.__get_img__(soup)
+        list_height = self.__get_card_height__(soup, poke_range)
+        list_weight = self.__get_card_weight__(soup, poke_range)
+        list_description = self.__get_card_info__(soup, poke_range)
+        list_ability = self.__get_card_ability__(soup, poke_range)
+        list_image = self.__get_img__(soup, poke_range)
 
-        for i in range(len(list_id[:151])):
+        for i in poke_range:
             df2 = pd.DataFrame(
                 {
                     'id' : [list_id[i]],
@@ -234,14 +244,17 @@ class Scrapper:
             df = pd.concat([df, df2], ignore_index=True)
         return df
 
-    def scrapping_pokemon(self) -> pd.DataFrame:
+    def scrapping_pokemon(self, poke_range: range) -> pd.DataFrame:
         """Return dataframe to be consumed in main program
+        Args:
+            poke_range: range of id by generation
         Returns:
             pd.DataFrame: dataframe with pokemon stats
         """
         r = requests.get(self.url)
         soup = bs(r.text, "lxml")
-        return self._build_json(soup)
+        self.poke_range = poke_range
+        return self._build_json(soup, poke_range)
 
     
 
